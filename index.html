@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wedgetail Technology — Website coming soon</title>
+  <meta name="description" content="Wedgetail Technology. See what others miss. Indigenous owned and operated. Our website is coming soon.">
+  <meta name="theme-color" content="#1818e8">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wedgetail Technology">
+  <meta property="og:title" content="Wedgetail Technology — Website coming soon">
+  <meta property="og:description" content="See what others miss. Indigenous owned and operated.">
+  <meta property="og:url" content="https://kb-wedgetail-dev.github.io/wedgetail-landing-page/">
+  <meta property="og:image" content="https://kb-wedgetail-dev.github.io/wedgetail-landing-page/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue: #1818e8;
+      --white: #ffffff;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; }
+    html { background: var(--blue); }
+    body {
+      background: var(--blue);
+      color: var(--white);
+      font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+    }
+    .page {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+    .top {
+      flex: 0 0 auto;
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--white);
+    }
+    .top p,
+    .tagline {
+      margin: 0;
+      font-size: 18px;
+      line-height: 23px;
+      font-weight: 500;
+    }
+    .middle {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 24px;
+    }
+    .mark {
+      display: block;
+      width: 238px;
+      max-width: 70vw;
+      height: auto;
+    }
+    .wordmark {
+      margin: 21px 0 0;
+      font-size: 0;
+    }
+    .wordmark img {
+      display: block;
+      width: 227px;
+      max-width: 70vw;
+      height: auto;
+    }
+    .tagline { margin-top: 89px; }
+    .bottom {
+      flex: 0 0 auto;
+      min-height: 101px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 24px;
+      border-top: 1px solid var(--white);
+    }
+    .ack, .email {
+      margin: 0;
+      font-size: 16px;
+      line-height: 20px;
+    }
+    .ack {
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .email { font-weight: 400; }
+    .email a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .email a:hover,
+    .email a:focus-visible {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .email a:focus-visible {
+      outline: 2px solid var(--white);
+      outline-offset: 4px;
+    }
+    @media (max-height: 700px) {
+      .middle { padding: 32px 24px; }
+      .tagline { margin-top: 56px; }
+    }
+    @media (min-width: 768px) {
+      .top { min-height: 96px; }
+      .top p, .tagline { font-size: 20px; line-height: 26px; }
+      .mark { width: 300px; }
+      .wordmark { margin-top: 26px; }
+      .wordmark img { width: 286px; }
+      .tagline { margin-top: 96px; }
+      .bottom { min-height: 112px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <p>Website coming soon</p>
+    </header>
+
+    <main class="middle">
+      <img class="mark" src="assets/logo-mark.svg" alt="" width="238" height="238">
+      <h1 class="wordmark">
+        <img src="assets/wordmark.svg" alt="Wedgetail Technology" width="227" height="45">
+      </h1>
+      <p class="tagline">See what others miss</p>
+    </main>
+
+    <footer class="bottom">
+      <p class="ack">Indigenous owned and operated</p>
+      <p class="email"><a href="mailto:hello@wedgetail.tech">hello@wedgetail.tech</a></p>
+    </footer>
+  </div>
+</body>
+</html>
