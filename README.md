@@ -2,7 +2,7 @@
 
 Static coming-soon landing page for Wedgetail Technology, hosted on GitHub Pages.
 
-Live: https://kb-wedgetail-dev.github.io/wedgetail-landing-page/
+Live: https://wedgetail.tech/ (GitHub Pages URL https://kb-wedgetail-dev.github.io/wedgetail-landing-page/ redirects there)
 
 ## Files
 
@@ -26,4 +26,4 @@ Open `index.html` in a browser, or run `python -m http.server 8080` and visit ht
 
 ## Custom domain
 
-If the site moves to its own domain, update the `og:url` and `og:image` meta tags in `index.html` and add a `CNAME` file containing the domain.
+`CNAME` holds `wedgetail.tech`; GitHub Pages reads it to serve the custom domain. DNS is at Cloudflare: four A records on the apex pointing at GitHub Pages IPs (185.199.108-111.153) and a `www` CNAME to `kb-wedgetail-dev.github.io`. Keep those records DNS-only (grey cloud) so GitHub can issue and renew the TLS certificate and enforce HTTPS.
