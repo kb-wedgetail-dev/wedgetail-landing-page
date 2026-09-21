@@ -146,9 +146,11 @@ export async function startEagle(container, toggle, sections) {
     const flightDimensions = dimensions.clone();
     const flightCenter = box.getCenter(new THREE.Vector3());
 
-    const referenceTransform = reference => {
+    let heroCopyBottom = 0;
+    let portraitBoundsKey = '', portraitTop = 0;
+    const referenceTransform = (reference, keepBelowHero = false) => {
       if (!reference) return null;
-      return {
+      const target = {
         x: width * reference.x / 100,
         y: height * reference.y / 100,
         scale: height / idleDimensions.y * reference.zoom / 100,
@@ -158,6 +160,22 @@ export async function startEagle(container, toggle, sections) {
           THREE.MathUtils.degToRad(reference.roll),
         ),
       };
+      // Safari's changing viewport and wrapped copy need a content-based floor.
+      // Apply the same floor in the playground's real homepage preview.
+      if (width <= 600 && keepBelowHero) {
+        const key = JSON.stringify([reference.clip, reference.time, reference.pitch, reference.yaw, reference.roll]);
+        if (key !== portraitBoundsKey) {
+          animator.sampleReference(reference);
+          eagle.position.set(0, 0, 0);
+          eagle.scale.setScalar(1);
+          eagle.rotation.copy(target.rotation);
+          eagle.updateMatrixWorld(true);
+          portraitTop = box.setFromObject(eagle, true).max.y;
+          portraitBoundsKey = key;
+        }
+        target.y = Math.max(target.y, heroCopyBottom + 40 + portraitTop * target.scale);
+      }
+      return target;
     };
 
     function measure() {
@@ -173,6 +191,7 @@ export async function startEagle(container, toggle, sections) {
       const mobile = width <= 600;
       const gutter = width * 0.07;
       const copy = hero.querySelector('.hero-copy').getBoundingClientRect();
+      heroCopyBottom = copy.bottom + scrollY;
       const caption = hero.querySelector('.eagle-caption').getBoundingClientRect();
       const heroTop = hero.getBoundingClientRect().top + scrollY;
       heroFraming = idleCenter;
@@ -272,7 +291,7 @@ export async function startEagle(container, toggle, sections) {
         // into the existing takeoff path as the visitor scrolls.
         const heroReference = MOBILE_EAGLE_REFERENCES.home;
         if (sectionIndex === 0 && heroReference && zoom < 1) {
-          const target = referenceTransform(heroReference);
+          const target = referenceTransform(heroReference, true);
           x -= lerp(heroFraming.x, flightCenter.x, launch) * scale;
           y += lerp(heroFraming.y, flightCenter.y, launch) * scale;
           x = lerp(target.x, x, zoom);
@@ -381,7 +400,7 @@ export async function startEagle(container, toggle, sections) {
       }
       const framing = reduced.matches ? 0 : launch;
       if (previewMode && previewReference) {
-        const target = referenceTransform(previewReference);
+        const target = referenceTransform(previewReference, previewReference.section === 'home');
         x = target.x; y = target.y; scale = target.scale;
         rotation.copy(target.rotation);
         lastPose = animator.sampleReference(previewReference);

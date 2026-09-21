@@ -62,3 +62,4 @@ main>section:not(#home){min-height:0}
   .site-header.menu-open nav .nav-contact{display:flex;justify-content:space-between}
 }
 @media(max-width:380px){.site-header.menu-open nav{grid-template-columns:1fr}}
+.icon-arrow{width:16px;height:16px;flex:none;vertical-align:middle;stroke-linecap:round;stroke-linejoin:round}
