@@ -47,4 +47,3 @@ export function loadLiveReferences() {
     }
   } catch { /* Repository poses remain available if browser storage is blocked. */ }
 }
-

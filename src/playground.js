@@ -467,4 +467,3 @@ stage.addEventListener('wheel', event => {
 }, { passive: false });
 
 start();
-

@@ -65,4 +65,3 @@ The original draft is untouched. `scripts/adapt-draft.mjs` adapts its section co
 With the dev server running, `node scripts/check-eagle.mjs` checks an actual WebGL browser at desktop, wide desktop and phone sizes. It verifies skeletal movement, all five clips, opacity, reverse scrolling, section clearances, pause and reduced motion. It saves screenshots and a report under `models/verification`. The script uses the bundled Playwright runtime; set `PLAYWRIGHT_PATH` to use a different Playwright installation.
 
 `node scripts/check-playground.mjs` checks desktop and phone editing: real bone changes while scrubbing, playback/pause, per-section persistence, PNG and JSON downloads, clipboard settings, import validation, homepage takeoff and fixed glass navigation. Its screenshots and report are saved under `.impeccable/review/`.
-
