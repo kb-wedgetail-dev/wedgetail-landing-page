@@ -63,3 +63,9 @@ main>section:not(#home){min-height:0}
 }
 @media(max-width:380px){.site-header.menu-open nav{grid-template-columns:1fr}}
 .icon-arrow{width:16px;height:16px;flex:none;vertical-align:middle;stroke-linecap:round;stroke-linejoin:round}
+/* Paint an ordinary image while the animated model downloads and warms up. */
+.hero-copy{position:relative}
+.eagle-loading-portrait{position:absolute;pointer-events:none;left:85%;top:0;width:100%;height:auto;max-width:none;transform:scaleX(-1);opacity:1;transition:opacity .4s ease}
+.eagle-loaded .eagle-loading-portrait{opacity:0}
+@media(max-width:600px){.eagle-loading-portrait{left:-35%;top:calc(100% + 24px);width:170%;transform:scaleX(-1);margin-top:-12%}}
+#eagle-scene[data-renderer="fallback"]{opacity:0}

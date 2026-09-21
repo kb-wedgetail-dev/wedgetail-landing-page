@@ -112,6 +112,7 @@ export async function startEagle(container, toggle, sections) {
     cancelAnimationFrame(animationFrame);
     container.classList.remove('webgl-ready');
     container.dataset.renderer = 'fallback';
+    document.documentElement.classList.remove('eagle-loaded');
     toggle.hidden = true;
     renderer?.dispose();
     renderer?.domElement.remove();
@@ -445,10 +446,12 @@ export async function startEagle(container, toggle, sections) {
       event.preventDefault(); contextLost = true; cancelAnimationFrame(animationFrame);
       container.classList.remove('webgl-ready'); toggle.hidden = true;
       container.dataset.renderer = 'fallback';
+    document.documentElement.classList.remove('eagle-loaded');
     });
     renderer.domElement.addEventListener('webglcontextrestored', () => {
       contextLost = false; container.classList.add('webgl-ready'); toggle.hidden = false;
-      container.dataset.renderer = 'webgl'; restart();
+      container.dataset.renderer = 'webgl';
+    document.documentElement.classList.add('eagle-loaded'); restart();
     });
     await document.fonts.ready;
     measure();
@@ -464,6 +467,7 @@ export async function startEagle(container, toggle, sections) {
     if (contextLost) return;
     container.classList.add('webgl-ready');
     container.dataset.renderer = 'webgl';
+    document.documentElement.classList.add('eagle-loaded');
     toggle.hidden = false;
 
     // Development-only evidence for browser checks: actual rig joints and

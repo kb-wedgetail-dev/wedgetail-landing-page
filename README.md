@@ -65,3 +65,9 @@ The original draft is untouched. `scripts/adapt-draft.mjs` adapts its section co
 With the dev server running, `node scripts/check-eagle.mjs` checks an actual WebGL browser at desktop, wide desktop and phone sizes. It verifies skeletal movement, all five clips, opacity, reverse scrolling, section clearances, pause and reduced motion. It saves screenshots and a report under `models/verification`. The script uses the bundled Playwright runtime; set `PLAYWRIGHT_PATH` to use a different Playwright installation.
 
 `node scripts/check-playground.mjs` checks desktop and phone editing: real bone changes while scrubbing, playback/pause, per-section persistence, PNG and JSON downloads, clipboard settings, import validation, homepage takeoff and fixed glass navigation. Its screenshots and report are saved under `.impeccable/review/`.
+
+## First-visit eagle loading
+
+The hero paints a high-priority static eagle image while WebGL loads and compiles, then fades it out when the animated model is ready. Local `?eagle-loading-preview=1` previews this state without starting WebGL.
+
+The runtime model is `public/models/wedgetail-eagle-v2.glb` (5.77 MB). The original GLB remains available as the source. Processing used glTF Transform CLI 4.5.0: resample redundant animation keys, meshopt with 16-bit position/normal/UV/weight precision, lossless WebP textures, then meshopt again after texture conversion. All five named animation clips are preserved. A versioned URL and immutable cache header allow repeat visits to reuse the model; change the filename when replacing it.
