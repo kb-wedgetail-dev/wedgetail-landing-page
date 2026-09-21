@@ -7,6 +7,24 @@ let saveQueue = Promise.resolve();
 const poseEditor = {
   name: 'eagle-pose-editor',
   configureServer(server) {
+    server.middlewares.use('/__eagle/poster', async (req, res) => {
+      if (req.method !== 'POST' || req.headers.origin !== `http://${req.headers.host}`) {
+        res.statusCode = 403; res.end(); return;
+      }
+      try {
+        let body = '';
+        for await (const chunk of req) { body += chunk; if (body.length > 5000000) throw new Error('Too large'); }
+        const data = JSON.parse(body);
+        for (const name of ['desktop', 'mobile']) {
+          const variant = data.variants[name];
+          if (!variant.image.startsWith('data:image/webp;base64,')) throw new Error('Invalid image');
+          await writeFile(fileURLToPath(new URL(`./public/models/hero-${name}.webp`, import.meta.url)), Buffer.from(variant.image.split(',')[1], 'base64'));
+          delete variant.image;
+        }
+        await writeFile(fileURLToPath(new URL('./src/hero-poster-bounds.json', import.meta.url)), JSON.stringify(data, null, 2));
+        res.end('Saved');
+      } catch { res.statusCode = 400; res.end('Invalid poster'); }
+    });
     server.middlewares.use('/__eagle/save', async (req, res) => {
       res.setHeader('Content-Type', 'application/json');
       if (req.method !== 'POST' || req.headers.origin !== `http://${req.headers.host}`) {

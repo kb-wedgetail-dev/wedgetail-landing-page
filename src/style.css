@@ -65,7 +65,7 @@ main>section:not(#home){min-height:0}
 .icon-arrow{width:16px;height:16px;flex:none;vertical-align:middle;stroke-linecap:round;stroke-linejoin:round}
 /* Paint an ordinary image while the animated model downloads and warms up. */
 .hero-copy{position:relative}
-.eagle-loading-portrait{position:absolute;pointer-events:none;left:85%;top:0;width:100%;height:auto;max-width:none;transform:scaleX(-1);opacity:1;transition:opacity .4s ease}
+.eagle-loading-portrait{position:absolute;pointer-events:none;left:85%;top:0;width:100%;height:auto;max-width:none;opacity:1;transition:opacity .9s cubic-bezier(.22,1,.36,1)}
 .eagle-loaded .eagle-loading-portrait{opacity:0}
-@media(max-width:600px){.eagle-loading-portrait{left:-35%;top:calc(100% + 24px);width:170%;transform:scaleX(-1);margin-top:-12%}}
+@media(max-width:600px){.eagle-loading-portrait{left:0;top:calc(100% + 40px);width:170%}}
 #eagle-scene[data-renderer="fallback"]{opacity:0}

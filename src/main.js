@@ -1,5 +1,5 @@
 import './style.css';
-import { startEagle } from './scene.js';
+
 import { previewMode, alignPreview } from './eagle-preview.js';
 import { refreshLiveReferences } from './eagle-references.js';
 const sections=[...document.querySelectorAll('main > section')];
@@ -55,7 +55,7 @@ document.querySelectorAll('#faq .buyer').forEach(item=>{
   item.querySelectorAll('p').forEach(p=>details.append(p));
   item.replaceWith(details);
 });
-if (!(import.meta.env.DEV && new URLSearchParams(location.search).has('eagle-loading-preview'))) refreshLiveReferences().catch(console.error).then(() => startEagle(document.querySelector('#eagle-scene'),document.querySelector('#motion-toggle'),sections));
+if (!(import.meta.env.DEV && new URLSearchParams(location.search).has('eagle-loading-preview'))) Promise.all([refreshLiveReferences().catch(console.error), import('./scene.js')]).then(([, { startEagle }]) => startEagle(document.querySelector('#eagle-scene'),document.querySelector('#motion-toggle'),sections));
 const refreshPoses = () => refreshLiveReferences().then(() => dispatchEvent(new Event('eagle-poses-updated'))).catch(console.error);
 addEventListener('focus', refreshPoses);
 if (import.meta.hot) import.meta.hot.on('eagle-poses-updated', refreshPoses);
