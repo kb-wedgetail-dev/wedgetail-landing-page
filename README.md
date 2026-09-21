@@ -4,7 +4,7 @@
 
 This repository contains the Vite source for the full website. Build with `npm ci` then `npm run build`; Cloudflare Workers Static Assets serves `dist/` using `wrangler.jsonc`. Run `npm run deploy` from an account authorized for Wedgetail. Saved eagle poses in `public/eagle-poses.json` are included in the build.
 
-The previous coming-soon site used GitHub Pages from the repository root. Do not use that root-publishing setting for this Vite source. Switch the domain to the verified Cloudflare deployment before merging the source replacement, then disable the old GitHub Pages deployment. The existing `CNAME` and legacy branding assets are retained for migration reference.
+Production runs on Cloudflare Workers at https://wedgetail.tech and https://www.wedgetail.tech, in the Wedgetail account configured in `wrangler.jsonc`. GitHub Pages is disabled. The existing `CNAME` and legacy branding assets are retained for migration reference.
 
 For Cloudflare Git integration, use build command `npm run build`, deploy command `npx wrangler deploy`, repository root, and production branch `main`.
 
@@ -29,7 +29,7 @@ Open `/eagle-playground/` to position the eagle over the actual homepage. The pr
 4. **Save section reference** writes the pose to `public/eagle-poses.json` through the local Vite server. All browsers load that same project file; focus or refresh the homepage to pick up changes. Applied mobile and desktop poses are stored separately. Working drafts survive reloads. **Test saved scrolling** releases the editor override so you can scroll the actual website, then return to positioning.
 5. Take a screenshot for the complete website composition. **Eagle-only PNG** exports the model and a settings caption, without the HTML layout. Copy/export settings to share or publish; project saves are included in subsequent production builds. Saving requires the local development server; the deployed static site is read-only. **Export all settings** downloads saved sections plus the current view; **Import settings** restores that JSON.
 
-Text guides indicate composition and can be hidden; they are not an exact rendering of the homepage layout. Exported coordinates describe the chest pivot in viewport percentages, XYZ Euler rotation in degrees and a scale relative to the idle model's bounds. Each JSON includes the frame dimensions, clip name, exact time and scale basis for reproduction.
+The preview renders the actual homepage layout. Exported coordinates describe the chest pivot in viewport percentages, XYZ Euler rotation in degrees and a scale relative to the idle model's bounds. Each JSON includes the frame dimensions, clip name, exact time and scale basis for reproduction.
 
 `src/eagle-model.js` shares the model loading, feather materials and lighting between the playground and homepage. The playground is a separate Vite HTML entry at `eagle-playground/index.html`, included in production builds and marked `noindex`. Its local development endpoint validates and atomically saves pose data to the project; no save endpoint is included in a static production deployment.
 
@@ -41,7 +41,7 @@ The homepage menu stays fixed with a translucent backdrop. Its logo and navigati
 
 - Review the supplied placeholder claims in `draft/wedgetail-tech.html` before publication. Business copy has been carried across, not independently verified.
 - Contact links open an email to the draft's `hello@wedgetail.tech` address.
-- Choose hosting and configure the production domain. This project has not been deployed.
+- Production is deployed to Cloudflare Workers; use `npm run deploy` to publish later changes.
 
 ## Implementation
 
