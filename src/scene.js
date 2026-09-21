@@ -185,9 +185,14 @@ export async function startEagle(container, toggle, sections) {
       height = innerHeight;
       scrollInset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
       maxScroll = Math.max(0, document.documentElement.scrollHeight - height);
-      renderer.setSize(width, height);
+      // iOS can paint the fixed layer behind its translucent browser controls
+      // beyond innerHeight. Extend the canvas and frustum together, keeping the
+      // visible pose coordinates unchanged instead of stretching the eagle.
+      const renderHeight = Math.max(height, container.getBoundingClientRect().height)
+        + (width <= 600 ? 160 : 0);
+      renderer.setSize(width, renderHeight);
       camera.left = -width / 2; camera.right = width / 2;
-      camera.top = height / 2; camera.bottom = -height / 2;
+      camera.top = height / 2; camera.bottom = height / 2 - renderHeight;
       camera.updateProjectionMatrix();
       const mobile = width <= 600;
       const gutter = width * 0.07;
@@ -440,6 +445,7 @@ export async function startEagle(container, toggle, sections) {
     document.addEventListener('visibilitychange', () => { hidden = document.hidden; restart(); });
     addEventListener('scroll', () => { if (paused) draw(performance.now(), true); }, { passive: true });
     addEventListener('resize', () => { measure(); restart(); });
+    visualViewport?.addEventListener('resize', () => { measure(); restart(); });
     const observer = new ResizeObserver(() => { measure(); restart(); });
     observer.observe(document.querySelector('main'));
     renderer.domElement.addEventListener('webglcontextlost', event => {
