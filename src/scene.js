@@ -263,6 +263,9 @@ export async function startEagle(container, toggle, sections) {
       else if (!paused) offset = THREE.MathUtils.damp(offset, scrollY, 10, dt);
       if (Math.abs(offset - scrollY) < 0.1) offset = scrollY;
       const mobile = width <= 600;
+      // The mobile canvas is document-positioned; keep its origin at the viewport.
+      // Pose coordinates below already subtract the scroll offset.
+      container.style.top = mobile ? `${scrollY}px` : '';
       const progress = Math.max(0, offset - anchors[0].top) / Math.max(1, hero.offsetHeight * 0.78);
       const animationTime = reduced.matches ? 0 : elapsed;
       // Anchor links stop below the fixed menu. Reach the reference there,
