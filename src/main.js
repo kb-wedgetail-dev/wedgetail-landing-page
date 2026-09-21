@@ -61,6 +61,6 @@ addEventListener('focus', refreshPoses);
 if (import.meta.hot) import.meta.hot.on('eagle-poses-updated', refreshPoses);
 if (previewMode) {
   document.documentElement.style.scrollBehavior = 'auto';
-  document.querySelector('#motion-toggle').style.display = 'none';
+
   new ResizeObserver(alignPreview).observe(document.querySelector('main'));
 }
