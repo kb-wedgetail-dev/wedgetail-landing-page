@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#1818e8">
+  <title>Eagle playground — Wedgetail Technology</title>
+  <link rel="icon" href="/logo-mark.svg">
+</head>
+<body>
+  <header class="studio-header">
+    <a class="brand" href="/" aria-label="Wedgetail Technology home"><img src="/logo-mark.svg" alt=""><img src="/wordmark.svg" alt="Wedgetail Technology"></a>
+    <h1>Eagle playground</h1>
+    <a class="home-link" href="/">Back to website <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+  </header>
+  <main class="studio">
+    <section class="workspace" aria-label="Eagle preview">
+      <div class="preview-toolbar">
+        <div><strong id="preview-title">Homepage</strong><span id="resolution">1440 × 1000</span></div>
+        <label class="check"><input id="guides" type="checkbox" checked disabled> Live website layout</label>
+        <button id="fullscreen" type="button">Expand preview</button>
+        <button id="test-scroll" type="button">Test saved scrolling</button>
+      </div>
+      <div class="stage-well" id="stage-well">
+        <div class="stage" id="stage" tabindex="0" aria-label="Eagle preview. Drag to rotate. Shift and drag to move. Scroll to zoom. Use the labelled controls for keyboard adjustments.">
+          <canvas id="backdrop" aria-hidden="true"></canvas>
+          <div class="loading" id="loading" role="status"><strong>Loading the eagle</strong><p id="loading-detail">Preparing the model and its animations…</p><button id="retry" type="button" hidden>Try again</button></div>
+        </div>
+      </div>
+      <div class="preview-footer"><p>Drag to rotate <span>·</span> Shift + drag to move <span>·</span> Scroll to zoom</p><button id="fit" type="button" disabled>Fit eagle in frame</button></div>
+      <p class="status" id="status" role="status">Choose a section, find a pose, then save your reference.</p>
+    </section>
+    <aside class="controls" aria-label="Eagle controls">
+      <fieldset id="editor" disabled>
+        <div class="control-scroll">
+        <section class="control-section">
+          <h2>Reference</h2>
+          <label for="section">Homepage section <span id="saved-indicator">New reference</span></label>
+          <select id="section"></select>
+          <div class="dimensions">
+            <label>Frame width<input id="width" type="number" min="320" max="3840" step="1" value="1440"></label>
+            <label>Frame height<input id="height" type="number" min="320" max="2160" step="1" value="1000"></label>
+          </div>
+          <div class="button-row frame-presets"><button type="button" data-frame="1440,1000">Desktop</button><button type="button" data-frame="2526,1252">Wide</button><button type="button" data-frame="390,844">Phone</button></div>
+        </section>
+        <section class="control-section">
+          <h2>Animation</h2>
+          <label for="clip">Supplied animation</label><select id="clip"></select>
+          <div class="playback"><button id="play" type="button" aria-pressed="false">Play animation</button><label>Speed<select id="speed"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label></div>
+          <div class="frame-label"><label for="time">Animation frame</label><output id="time-display" for="time">0.00 / 0.00 s</output></div>
+          <input id="time" class="timeline" type="range" min="0" max="1" step="0.001" value="0">
+          <div class="button-row"><button type="button" id="previous-frame" aria-label="Previous frame">Previous frame</button><button type="button" id="next-frame" aria-label="Next frame">Next frame</button><label class="check"><input id="loop" type="checkbox" checked> Loop</label></div>
+        </section>
+        <section class="control-section">
+          <h2>Rotation</h2><div id="rotation-controls"></div>
+        </section>
+        <section class="control-section">
+          <h2>Framing</h2><div id="framing-controls"></div>
+          <label for="background">Website background</label><select id="background" disabled><option value="section">Match section</option><option value="#1818e8">Brand blue</option><option value="#eceeff">Pale blue</option><option value="#ffffff">White</option><option value="#0b0b2e">Dark ink</option></select>
+          <label class="notes-label" for="notes">Notes for this section</label><textarea id="notes" rows="2" maxlength="2000" placeholder="For example: face towards the headline, wings halfway open."></textarea>
+        </section>
+        </div>
+        <section class="save-section">
+          <button class="primary" id="save" type="button">Save section reference</button>
+          <div class="button-row"><button id="download-image" type="button">Eagle-only PNG</button><button id="copy" type="button">Copy settings</button></div>
+          <div class="button-row"><button id="export" type="button">Export all settings</button><button id="import" type="button">Import settings</button></div>
+          <div class="button-row"><button class="text-button" id="reset" type="button">Reset this view</button><button class="text-button" id="view-references" type="button">View saved settings</button></div>
+          <p>Save section reference updates the project for all browsers. Drafts stay in this browser. Use matching frame dimensions when comparing views.</p>
+          <input id="import-file" type="file" accept=".json,application/json" hidden>
+          <textarea id="copy-fallback" aria-label="Reference settings — select and copy" readonly hidden></textarea>
+        </section>
+      </fieldset>
+    </aside>
+  </main>
+  <script type="module" src="/src/playground.js"></script>
+</body>
+</html>

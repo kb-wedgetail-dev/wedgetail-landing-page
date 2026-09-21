@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /eagle-playground/
+Sitemap: https://wedgetail.tech/sitemap.xml

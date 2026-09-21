@@ -1,7 +1,9 @@
-.DS_Store
-Thumbs.db
 node_modules/
+dist/
+.impeccable/review/
 *.log
-.vscode/
-.idea/
-.impeccable/
+.wrangler/
+.env
+.env.*
+!.env.example
+*.tmp
