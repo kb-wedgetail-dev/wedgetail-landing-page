@@ -92,7 +92,7 @@ export function createEagleAnimator(model, clips) {
 }
 
 export async function startEagle(container, toggle, sections) {
-  toggle.hidden = true;
+  if (toggle) toggle.hidden = true;
   const fallback = container.querySelector('.fallback-eagle-idle');
   container.querySelector('.fallback-eagle-flight')?.remove();
   const hero = sections[0];
@@ -113,7 +113,7 @@ export async function startEagle(container, toggle, sections) {
     container.classList.remove('webgl-ready');
     container.dataset.renderer = 'fallback';
     document.documentElement.classList.remove('eagle-loaded');
-    toggle.hidden = true;
+    if (toggle) toggle.hidden = true;
     renderer?.dispose();
     renderer?.domElement.remove();
   }
@@ -188,8 +188,7 @@ export async function startEagle(container, toggle, sections) {
       // iOS can paint the fixed layer behind its translucent browser controls
       // beyond innerHeight. Extend the canvas and frustum together, keeping the
       // visible pose coordinates unchanged instead of stretching the eagle.
-      const renderHeight = Math.max(height, container.getBoundingClientRect().height)
-        + (width <= 600 ? 160 : 0);
+      const renderHeight = Math.max(height, container.getBoundingClientRect().height);
       renderer.setSize(width, renderHeight);
       camera.left = -width / 2; camera.right = width / 2;
       camera.top = height / 2; camera.bottom = height / 2 - renderHeight;
@@ -436,11 +435,12 @@ export async function startEagle(container, toggle, sections) {
       if (!paused) animationFrame = requestAnimationFrame(frame);
     }
     function updateToggle() {
+      if (!toggle) return;
       toggle.setAttribute('aria-pressed', String(paused));
       toggle.setAttribute('aria-label', paused ? 'Resume eagle animation' : 'Pause eagle animation');
       toggle.querySelector('span').textContent = paused ? 'Resume flight' : 'Pause flight';
     }
-    toggle.addEventListener('click', () => { paused = !paused; updateToggle(); restart(); });
+    toggle?.addEventListener('click', () => { paused = !paused; updateToggle(); restart(); });
     reduced.addEventListener('change', event => { paused = event.matches; updateToggle(); restart(); });
     document.addEventListener('visibilitychange', () => { hidden = document.hidden; restart(); });
     addEventListener('scroll', () => { if (paused) draw(performance.now(), true); }, { passive: true });
@@ -450,12 +450,12 @@ export async function startEagle(container, toggle, sections) {
     observer.observe(document.querySelector('main'));
     renderer.domElement.addEventListener('webglcontextlost', event => {
       event.preventDefault(); contextLost = true; cancelAnimationFrame(animationFrame);
-      container.classList.remove('webgl-ready'); toggle.hidden = true;
+      container.classList.remove('webgl-ready'); if (toggle) toggle.hidden = true;
       container.dataset.renderer = 'fallback';
     document.documentElement.classList.remove('eagle-loaded');
     });
     renderer.domElement.addEventListener('webglcontextrestored', () => {
-      contextLost = false; container.classList.add('webgl-ready'); toggle.hidden = false;
+      contextLost = false; container.classList.add('webgl-ready'); if (toggle) toggle.hidden = false;
       container.dataset.renderer = 'webgl';
     document.documentElement.classList.add('eagle-loaded'); restart();
     });
@@ -474,7 +474,7 @@ export async function startEagle(container, toggle, sections) {
     container.classList.add('webgl-ready');
     container.dataset.renderer = 'webgl';
     document.documentElement.classList.add('eagle-loaded');
-    toggle.hidden = false;
+    if (toggle) toggle.hidden = false;
 
     // Development-only evidence for browser checks: actual rig joints and
     // projected bounds, rather than assuming a successful build means motion.

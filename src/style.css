@@ -69,3 +69,7 @@ main>section:not(#home){min-height:0}
 .eagle-loaded .eagle-loading-portrait{opacity:0}
 @media(max-width:600px){.eagle-loading-portrait{left:0;top:calc(100% + 40px);width:170%}}
 #eagle-scene[data-renderer="fallback"]{opacity:0}
+
+@media(max-width:600px){#eagle-scene{position:absolute;bottom:auto;height:calc(100lvh + 160px)}}
+
+@media(max-width:600px){body{position:relative}.eagle-layer{position:absolute;inset:0;overflow:clip;pointer-events:none;z-index:1}}
