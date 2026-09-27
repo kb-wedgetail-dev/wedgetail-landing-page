@@ -14,6 +14,6 @@ The user requires a wedge-tailed eagle rendered using Three.js that moves from s
 Business and procurement claims from the draft have not been independently fact-checked. Custom AI service copy reflects the user's requested change in focus. Contact is hello@wedgetail.tech. Publication was not requested. Do not invent clients, testimonials or business performance claims. The custom AI section retains the internal `security` identifier so saved eagle references and existing links continue to work.
 
 ## Voice
-Do not claim external Indigenous business certification until the user confirms approval.
+The user has confirmed Supply Nation registration and supplied the Registered logo. Use “Supply Nation registered”; do not describe the business as certified.
 
 Keep public copy clear, concise and professional, with a welcoming, matter-of-fact tone. Use short service descriptions and plain-language headings. Avoid dismissive comparisons, pressure, inflated promises and repeated sales claims. The user requested a site-wide rewrite to soften the original draft. Procurement copy now offers documentation and support rather than blanket eligibility assurances; AI copy describes the approach rather than promising perfect answers or universal data-handling guarantees.
