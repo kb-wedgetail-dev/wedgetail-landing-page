@@ -2,7 +2,7 @@
 // viewport convention: x/y are the model pivot in percent, zoom is relative to
 // the idle model height, and rotations are XYZ Euler degrees.
 export const SAVED_EAGLE_REFERENCES = {
-  security: { time: 0.2646000715, speed: 1, yaw: -13.3709924231, pitch: -21.6276576809, roll: -63.8, zoom: 23.6245873711, x: 21.883, y: 51.411, clip: 'fly_A_to_gliding_A' },
+  build: { time: 0.2646000715, speed: 1, yaw: -13.3709924231, pitch: -21.6276576809, roll: -63.8, zoom: 23.6245873711, x: 21.883, y: 51.411, clip: 'fly_A_to_gliding_A' },
   ai: { time: 0, speed: 1, yaw: -14.324, pitch: 40.107, roll: -6.875, zoom: 8.691, x: 21.883, y: 51.411, clip: 'gliding_A0' },
   how: { time: 0.2221331823, speed: 1, yaw: -43.5950367029, pitch: -9.2974962447, roll: -47.2, zoom: 66.11955528863454, x: 101.1, y: 51.411, clip: 'fly_A0' },
   buyers: { time: 0, speed: 1, yaw: -14.324, pitch: 40.107, roll: -6.875, zoom: 8.691, x: 21.883, y: 51.411, clip: 'gliding_A0' },
@@ -42,7 +42,7 @@ export function loadLiveReferences() {
       for (const [id, value] of Object.entries(data[device] || {})) {
         if (!['x','y','zoom','yaw','pitch','roll','time'].every(key => Number.isFinite(value[key]))) continue;
         if (!['idle_A0','fly_start_A','fly_A0','fly_A_to_gliding_A','gliding_A0'].includes(value.clip)) continue;
-        target[id] = value;
+        target[id === 'security' ? 'build' : id] = value;
       }
     }
   } catch { /* Repository poses remain available if browser storage is blocked. */ }

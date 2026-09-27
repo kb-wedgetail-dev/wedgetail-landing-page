@@ -12,7 +12,7 @@ const round = value => Math.round(value * 1000) / 1000;
 const clone = value => structuredClone(value);
 const STORAGE_KEY = 'wedgetail-eagle-playground-v1';
 const clipLabels = { idle_A0: 'Idle / perched', fly_start_A: 'Takeoff', fly_A0: 'Flapping flight', fly_A_to_gliding_A: 'Flight to glide', gliding_A0: 'Gliding' };
-const labels = { home: 'Homepage', security: 'Custom AI', ai: 'Grounded AI', how: 'How we work', buyers: 'Who we work with', supply: 'Licensing', about: 'About us', 'how-to-buy': 'How to buy', faq: 'FAQs', contact: 'Contact' };
+const labels = { home: 'Homepage', build: 'Custom AI', ai: 'Grounded AI', how: 'How we work', buyers: 'Who we work with', supply: 'Licensing', about: 'About us', 'how-to-buy': 'How to buy', faq: 'FAQs', contact: 'Contact' };
 const page = new DOMParser().parseFromString(homepageHTML, 'text/html');
 const sections = [...page.querySelectorAll('main > section')].map(section => ({
   id: section.id,
@@ -99,7 +99,11 @@ function restore() {
   try {
     const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
     if (data?.version !== 1) return;
-    for (const [key, value] of Object.entries(data.deviceDrafts || {})) deviceDrafts[key] = validateReference(value);
+    for (const key of ['saved', 'drafts']) {
+      if (data[key]?.security && !data[key].build) data[key].build = data[key].security;
+    }
+    if (data.selected === 'security') data.selected = 'build';
+    for (const [key, value] of Object.entries(data.deviceDrafts || {})) deviceDrafts[key.replace(/:security$/, ':build')] = validateReference(value);
     for (const section of sections) {
       if (data.saved?.[section.id]) saved[section.id] = validateReference(data.saved[section.id]);
       if (data.drafts?.[section.id]) drafts[section.id] = validateReference(data.drafts[section.id]);
@@ -422,7 +426,8 @@ $('import-file').addEventListener('change', async event => {
     const data = JSON.parse(await file.text());
     if (data.format !== 'wedgetail-eagle-references' || data.version !== 1 || !data.references) throw new Error('Choose an exported Wedgetail reference JSON file.');
     const imported = {};
-    for (const [id, value] of Object.entries(data.references)) {
+    for (const [originalId, value] of Object.entries(data.references)) {
+      const id = originalId === 'security' ? 'build' : originalId;
       if (!sections.some(section => section.id === id)) throw new Error('Unknown homepage section: ' + id);
       imported[id] = validateReference(value);
     }

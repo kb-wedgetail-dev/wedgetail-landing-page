@@ -2,6 +2,11 @@ import './style.css';
 
 import { previewMode, alignPreview } from './eagle-preview.js';
 import { refreshLiveReferences } from './eagle-references.js';
+function migrateSectionLink() {
+  if (location.hash === '#security') location.replace(location.href.replace(/#security$/, '#build'));
+}
+migrateSectionLink();
+addEventListener('hashchange', migrateSectionLink);
 const sections=[...document.querySelectorAll('main > section')];
 const header = document.querySelector('.site-header');
 const menuToggle = document.querySelector('.menu-toggle');
