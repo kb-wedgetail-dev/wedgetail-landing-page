@@ -34,7 +34,7 @@ const poseEditor = {
         let body = '';
         for await (const chunk of req) { body += chunk; if (body.length > 16000) throw new Error('Request too large.'); }
         const { section, reference } = JSON.parse(body);
-        if (!['home','build','ai','how','buyers','supply','about','how-to-buy','faq','contact'].includes(section)) throw new Error('Invalid section.');
+        if (!['home','build','ai','how','buyers','partners','supply','about','how-to-buy','faq','contact'].includes(section)) throw new Error('Invalid section.');
         const ranges = { width:[320,3840], height:[320,2160], time:[0,600], speed:[0.25,2], x:[-100,200], y:[-100,200], zoom:[5,400], yaw:[-180,180], pitch:[-180,180], roll:[-180,180] };
         const pose = {};
         for (const [key,[min,max]] of Object.entries(ranges)) {

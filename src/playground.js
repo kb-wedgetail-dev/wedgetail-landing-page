@@ -12,7 +12,7 @@ const round = value => Math.round(value * 1000) / 1000;
 const clone = value => structuredClone(value);
 const STORAGE_KEY = 'wedgetail-eagle-playground-v1';
 const clipLabels = { idle_A0: 'Idle / perched', fly_start_A: 'Takeoff', fly_A0: 'Flapping flight', fly_A_to_gliding_A: 'Flight to glide', gliding_A0: 'Gliding' };
-const labels = { home: 'Homepage', build: 'Custom AI', ai: 'Grounded AI', how: 'How we work', buyers: 'Who we work with', supply: 'Licensing', about: 'About us', 'how-to-buy': 'How to buy', faq: 'FAQs', contact: 'Contact' };
+const labels = { home: 'Homepage', build: 'Custom AI', ai: 'Grounded AI', how: 'How we work', buyers: 'Who we work with', partners: 'Partners', supply: 'Licensing', about: 'About us', 'how-to-buy': 'How to buy', faq: 'FAQs', contact: 'Contact' };
 const page = new DOMParser().parseFromString(homepageHTML, 'text/html');
 const sections = [...page.querySelectorAll('main > section')].map(section => ({
   id: section.id,

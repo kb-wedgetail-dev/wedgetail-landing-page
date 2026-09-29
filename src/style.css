@@ -77,3 +77,8 @@ main>section:not(#home){min-height:0}
 /* Preserve the supplied registration mark and its built-in clear space. */
 .foot-main .supply-nation-logo{width:98px;height:auto;flex-shrink:0}
 @media(max-width:600px){.foot-main .supply-nation-logo{width:120px}.foot-main p{flex-basis:100%}}
+
+#partners>.wrap{width:62%;margin-right:0}
+.partner-link{display:inline-block;margin-top:16px;color:var(--blue);font-size:13px;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:1000px){#partners>.wrap{width:65%}}
+@media(max-width:600px){#partners>.wrap{width:100%;margin:0}#partners{padding-bottom:220px}}

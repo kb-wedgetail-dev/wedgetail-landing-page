@@ -6,6 +6,7 @@ export const SAVED_EAGLE_REFERENCES = {
   ai: { time: 0, speed: 1, yaw: -14.324, pitch: 40.107, roll: -6.875, zoom: 8.691, x: 21.883, y: 51.411, clip: 'gliding_A0' },
   how: { time: 0.2221331823, speed: 1, yaw: -43.5950367029, pitch: -9.2974962447, roll: -47.2, zoom: 66.11955528863454, x: 101.1, y: 51.411, clip: 'fly_A0' },
   buyers: { time: 0, speed: 1, yaw: -14.324, pitch: 40.107, roll: -6.875, zoom: 8.691, x: 21.883, y: 51.411, clip: 'gliding_A0' },
+  partners: { time: 0, speed: 1, yaw: -14.324, pitch: 40.107, roll: -6.875, zoom: 8.691, x: 21.883, y: 51.411, clip: 'gliding_A0' },
   supply: { time: 0, speed: 1, yaw: -60.369643930047474, pitch: -22.795937735856302, roll: -6.875, zoom: 129.7, x: 98.89220339169984, y: 78.71299941363841, clip: 'idle_A0' },
   about: { time: 0, speed: 1, yaw: -14.324, pitch: 40.107, roll: -6.875, zoom: 8.691, x: 21.883, y: 51.411, clip: 'gliding_A0' },
   'how-to-buy': { time: 0, speed: 1, yaw: -42.1995779607, pitch: -16.5023366093, roll: -6.875, zoom: 40, x: 79.883, y: 51.411, clip: 'gliding_A0' },
