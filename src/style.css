@@ -78,6 +78,9 @@ main>section:not(#home){min-height:0}
 .foot-main .supply-nation-logo{width:98px;height:auto;flex-shrink:0}
 @media(max-width:600px){.foot-main .supply-nation-logo{width:120px}.foot-main p{flex-basis:100%}}
 
+#partners{background:var(--blue);color:white;--muted:#fff;--line:#ffffff40}
+#partners .btn-solid{background:white;color:var(--blue)}
+#partners .btn-solid:hover{background:#d6fff5}
 #partners>.wrap{width:62%;margin-right:0}
 .partner-link{display:inline-block;margin-top:16px;color:var(--blue);font-size:13px;text-decoration:underline;text-underline-offset:4px}
 @media(max-width:1000px){#partners>.wrap{width:65%}}

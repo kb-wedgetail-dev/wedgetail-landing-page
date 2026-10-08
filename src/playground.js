@@ -18,8 +18,8 @@ const sections = [...page.querySelectorAll('main > section')].map(section => ({
   id: section.id,
   label: labels[section.id] || section.id,
   title: section.querySelector('h1,h2')?.textContent || '',
-  blue: ['home', 'contact'].includes(section.id),
-  background: ['home', 'contact'].includes(section.id) ? '#1818e8' : ['ai', 'faq'].includes(section.id) ? '#eceeff' : section.id === 'buyers' ? '#f7f8ff' : '#ffffff',
+  blue: ['home', 'partners', 'contact'].includes(section.id),
+  background: ['home', 'partners', 'contact'].includes(section.id) ? '#1818e8' : ['ai', 'faq'].includes(section.id) ? '#eceeff' : section.id === 'buyers' ? '#f7f8ff' : '#ffffff',
   copySide: ['home', 'how', 'how-to-buy', 'contact'].includes(section.id) ? 'left' : 'right',
 }));
 const sectionOptions = sections.map(section => new Option(section.label, section.id));
