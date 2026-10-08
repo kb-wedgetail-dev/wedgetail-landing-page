@@ -12,7 +12,7 @@ const round = value => Math.round(value * 1000) / 1000;
 const clone = value => structuredClone(value);
 const STORAGE_KEY = 'wedgetail-eagle-playground-v1';
 const clipLabels = { idle_A0: 'Idle / perched', fly_start_A: 'Takeoff', fly_A0: 'Flapping flight', fly_A_to_gliding_A: 'Flight to glide', gliding_A0: 'Gliding' };
-const labels = { home: 'Homepage', build: 'Custom AI', ai: 'Grounded AI', how: 'How we work', buyers: 'Who we work with', partners: 'Partners', supply: 'Licensing', about: 'About us', 'how-to-buy': 'How to buy', faq: 'FAQs', contact: 'Contact' };
+const labels = { home: 'Homepage', build: 'Custom AI', ai: 'Grounded AI', how: 'How we work', buyers: 'Who we work with', partners: 'Partners', about: 'About us', 'how-to-buy': 'How to buy', faq: 'FAQs', contact: 'Contact' };
 const page = new DOMParser().parseFromString(homepageHTML, 'text/html');
 const sections = [...page.querySelectorAll('main > section')].map(section => ({
   id: section.id,
@@ -20,7 +20,7 @@ const sections = [...page.querySelectorAll('main > section')].map(section => ({
   title: section.querySelector('h1,h2')?.textContent || '',
   blue: ['home', 'about', 'contact'].includes(section.id),
   background: ['home', 'contact'].includes(section.id) ? '#1818e8' : section.id === 'about' ? '#0f0fb9' : ['ai', 'faq'].includes(section.id) ? '#eceeff' : section.id === 'buyers' ? '#f7f8ff' : '#ffffff',
-  copySide: ['home', 'how', 'supply', 'how-to-buy', 'contact'].includes(section.id) ? 'left' : 'right',
+  copySide: ['home', 'how', 'how-to-buy', 'contact'].includes(section.id) ? 'left' : 'right',
 }));
 const sectionOptions = sections.map(section => new Option(section.label, section.id));
 $('section').append(...sectionOptions);
